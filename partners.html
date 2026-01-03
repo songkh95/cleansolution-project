@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>거래처 관리 - 크린솔루션 ERP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-gray-100 font-sans text-gray-800">
+
+    <div class="flex h-screen overflow-hidden">
+        <!-- 좌측 사이드바 -->
+        <aside class="w-64 bg-slate-900 text-white flex flex-col shadow-xl z-20">
+            <div class="p-6 border-b border-slate-800 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center text-xl font-bold">C</div>
+                <div>
+                    <h1 class="font-bold text-lg tracking-wide">CleanSolution</h1>
+                    <p class="text-xs text-slate-400">Enterprise System</p>
+                </div>
+            </div>
+            <nav class="flex-1 p-4 space-y-2">
+                <a href="index.html" id="nav-dashboard" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-gray-300 hover:bg-slate-800 hover:text-white text-left">
+                    <i class="fa-solid fa-chart-line w-5 text-center"></i>
+                    <span class="font-medium">대시보드</span>
+                </a>
+                <a href="inventory.html" id="nav-inventory" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-gray-300 hover:bg-slate-800 hover:text-white text-left">
+                    <i class="fa-solid fa-boxes-stacked w-5 text-center"></i>
+                    <span class="font-medium">재고 관리</span>
+                </a>
+                <a href="partners.html" id="nav-partners" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-gray-300 hover:bg-slate-800 hover:text-white text-left">
+                    <i class="fa-solid fa-users w-5 text-center"></i>
+                    <span class="font-medium">거래처 관리</span>
+                </a>
+            </nav>
+            <div class="p-4 border-t border-slate-800">
+                <div class="flex items-center gap-3 px-2">
+                    <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-xs">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="overflow-hidden">
+                        <p class="text-sm font-medium truncate">관리자</p>
+                        <p class="text-xs text-slate-500 truncate">admin@clean.sol</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 메인 컨텐츠 -->
+        <main class="flex-1 flex flex-col relative overflow-hidden bg-gray-50">
+            <header class="bg-white border-b border-gray-200 px-8 py-4 flex justify-between items-center shadow-sm">
+                <h2 id="page-title" class="text-2xl font-bold text-gray-800">거래처 관리</h2>
+            </header>
+
+            <div class="flex-1 overflow-auto p-8 relative">
+                <section id="page-partners" class="h-full flex flex-col items-center justify-center text-gray-400">
+                    <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-4 text-3xl">
+                        <i class="fa-solid fa-person-digging"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-600">페이지 준비 중입니다</h3>
+                    <p class="mt-2">거래처 관리 기능은 다음 업데이트에 포함됩니다.</p>
+                </section>
+            </div>
+        </main>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

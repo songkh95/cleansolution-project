@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>크린솔루션 ERP</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome (아이콘) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Supabase SDK (데이터베이스) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-gray-100 font-sans text-gray-800">
+
+    <div class="flex h-screen overflow-hidden">
+        
+        <!-- 좌측 사이드바 -->
+        <aside class="w-64 bg-slate-900 text-white flex flex-col shadow-xl z-20">
+            <div class="p-6 border-b border-slate-800 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center text-xl font-bold">C</div>
+                <div>
+                    <h1 class="font-bold text-lg tracking-wide">CleanSolution</h1>
+                    <p class="text-xs text-slate-400">Enterprise System</p>
+                </div>
+            </div>
+
+            <nav class="flex-1 p-4 space-y-2">
+                <a href="index.html" id="nav-dashboard" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-gray-300 hover:bg-slate-800 hover:text-white text-left">
+                    <i class="fa-solid fa-chart-line w-5 text-center"></i>
+                    <span class="font-medium">대시보드</span>
+                </a>
+                <a href="inventory.html" id="nav-inventory" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-gray-300 hover:bg-slate-800 hover:text-white text-left">
+                    <i class="fa-solid fa-boxes-stacked w-5 text-center"></i>
+                    <span class="font-medium">재고 관리</span>
+                </a>
+                <a href="partners.html" id="nav-partners" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-gray-300 hover:bg-slate-800 hover:text-white text-left">
+                    <i class="fa-solid fa-users w-5 text-center"></i>
+                    <span class="font-medium">거래처 관리</span>
+                </a>
+            </nav>
+
+            <div class="p-4 border-t border-slate-800">
+                <div class="flex items-center gap-3 px-2">
+                    <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-xs">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="overflow-hidden">
+                        <p class="text-sm font-medium truncate">관리자</p>
+                        <p class="text-xs text-slate-500 truncate">admin@clean.sol</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 메인 컨텐츠 영역 -->
+        <main class="flex-1 flex flex-col relative overflow-hidden bg-gray-50">
+            
+            <!-- 상단 헤더 -->
+            <header class="bg-white border-b border-gray-200 px-8 py-4 flex justify-between items-center shadow-sm">
+                <h2 id="page-title" class="text-2xl font-bold text-gray-800">대시보드</h2>
+                <div class="flex items-center gap-4">
+                    <button class="w-10 h-10 rounded-full hover:bg-gray-100 flex items-center justify-center text-gray-500 transition-colors">
+                        <i class="fa-regular fa-bell"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- 페이지 컨텐츠 (스크롤 영역) -->
+            <div class="flex-1 overflow-auto p-8 relative">
+                
+                <!-- 1. 대시보드 페이지 -->
+                <section id="page-dashboard" class="space-y-6">
+                    <div class="bg-blue-600 rounded-2xl p-8 text-white shadow-lg relative overflow-hidden">
+                        <div class="relative z-10">
+                            <h3 class="text-3xl font-bold mb-2">환영합니다, 사장님! 👋</h3>
+                            <p class="text-blue-100">오늘의 업무 현황을 한눈에 확인하세요.</p>
+                        </div>
+                        <i class="fa-solid fa-building text-9xl absolute -right-6 -bottom-10 text-blue-500 opacity-50"></i>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="w-12 h-12 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-box-open"></i>
+                                </div>
+                                <span class="text-xs font-bold text-gray-400 bg-gray-100 px-2 py-1 rounded">실시간</span>
+                            </div>
+                            <h4 class="text-gray-500 text-sm font-medium">재고 부족 알림</h4>
+                            <p class="text-3xl font-bold text-gray-800 mt-1">2 <span class="text-sm font-normal text-gray-400">건</span></p>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="w-12 h-12 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-won-sign"></i>
+                                </div>
+                                <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded">+12%</span>
+                            </div>
+                            <h4 class="text-gray-500 text-sm font-medium">이번 달 매출</h4>
+                            <p class="text-3xl font-bold text-gray-800 mt-1">45.2 <span class="text-sm font-normal text-gray-400">백만원</span></p>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="w-12 h-12 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-users"></i>
+                                </div>
+                            </div>
+                            <h4 class="text-gray-500 text-sm font-medium">총 거래처</h4>
+                            <p class="text-3xl font-bold text-gray-800 mt-1">128 <span class="text-sm font-normal text-gray-400">개사</span></p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Main Logic -->
+    <script src="main.js"></script>
+</body>
+</html>
