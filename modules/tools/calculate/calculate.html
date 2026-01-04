@@ -13,7 +13,8 @@
 
         .calc-container {
             background-color: #ffffff !important;
-            max-width: 1000px;
+            max-width: 1400px; /* 기존 1000px에서 1400px로 확장 */
+            width: 95%; /* 모바일 등 작은 화면에서도 꽉 차게 */
             margin: 0 auto;
             padding: 40px;
             border-radius: 12px;
@@ -22,26 +23,26 @@
 
         /* 2. 타이틀 스타일 */
         #calculator-view h1 {
-            font-size: 24px;
+            font-size: 28px; /* 제목 크기 확대 */
             font-weight: 700;
             color: #1a202c;
             border-bottom: 2px solid #3182ce;
-            padding-bottom: 15px;
-            margin-bottom: 30px;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
             text-align: center;
         }
 
         #calculator-view h2 {
-            font-size: 18px;
+            font-size: 22px; /* 소제목 크기 확대 */
             font-weight: 600;
             color: #2d3748;
-            margin-top: 30px;
-            margin-bottom: 15px;
+            margin-top: 40px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            border-left: 4px solid #3182ce;
-            padding-left: 10px;
+            gap: 10px;
+            border-left: 5px solid #3182ce;
+            padding-left: 15px;
         }
 
         /* 3. 테이블 스타일 - 엑셀 느낌 제거하고 모던하게 */
@@ -55,13 +56,13 @@
             width: 100%;
             border-collapse: collapse !important;
             background-color: white;
-            font-size: 14px;
+            font-size: 16px; /* 표 글자 크기 확대 (14px -> 16px) */
         }
 
         #calculator-view th, 
         #calculator-view td {
             border: 1px solid #e2e8f0 !important; /* 연한 회색 테두리 */
-            padding: 10px 12px;
+            padding: 14px 16px; /* 셀 내부 여백 확대 */
             vertical-align: middle;
         }
 
@@ -78,21 +79,23 @@
         #calculator-view .section-header {
             background-color: #e2e8f0;
             color: #2d3748;
+            font-size: 17px;
         }
 
         /* 4. 입력 필드 (Input) 스타일 개선 */
         #calculator-view input {
             width: 100%;
-            padding: 8px;
+            padding: 12px; /* 입력창 내부 여백 확대 */
             border: 1px solid #cbd5e0 !important;
-            border-radius: 4px;
-            font-size: 14px;
+            border-radius: 6px;
+            font-size: 16px; /* 입력 글자 크기 확대 */
             text-align: right; /* 숫자는 우측 정렬 */
             transition: all 0.2s ease;
             box-sizing: border-box;
             background-color: #fffbf0 !important; /* 아주 연한 아이보리 (입력가능 표시) */
             color: #2d3748;
             font-weight: 500;
+            height: 45px; /* 입력창 높이 고정으로 터치/클릭 용이하게 */
         }
 
         /* 텍스트 입력 칸은 가운데 정렬 */
@@ -128,6 +131,7 @@
         #calculator-view input[id^="display"],
         #calculator-view input[id^="profit"] {
             font-weight: 700;
+            font-size: 18px; /* 결과값은 더 크게 */
         }
         
         #profit_monthly, #profit_total {
@@ -140,7 +144,7 @@
 
         /* 7. 기타 UI 요소 */
         .text-xs {
-            font-size: 12px;
+            font-size: 14px; /* 안내 문구도 약간 키움 */
             color: #718096;
             margin-bottom: 8px;
         }
@@ -149,14 +153,14 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 18px;
-            height: 18px;
+            width: 24px; /* 아이콘 크기 확대 */
+            height: 24px;
             background-color: #cbd5e0;
             color: white;
             border-radius: 50%;
-            font-size: 11px;
+            font-size: 14px;
             cursor: pointer;
-            margin-left: 5px;
+            margin-left: 8px;
         }
         
         .info-icon:hover {
@@ -167,8 +171,8 @@
         button[onclick="Calculator.saveAsPDF()"] {
             background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
             border: none;
-            padding: 12px 30px;
-            font-size: 16px;
+            padding: 15px 40px; /* 버튼 크기 확대 */
+            font-size: 18px; /* 버튼 글자 확대 */
             border-radius: 50px;
             box-shadow: 0 4px 15px rgba(229, 62, 62, 0.3);
             cursor: pointer;
@@ -183,19 +187,19 @@
         /* 모달 스타일 (기존 유지 + 깔끔하게) */
         .modal-content {
             background: white;
-            padding: 25px;
+            padding: 30px;
             border-radius: 12px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            max-width: 400px;
+            max-width: 500px; /* 모달 너비 확대 */
             width: 90%;
             position: relative;
         }
         
         .close-btn {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 24px;
+            top: 20px;
+            right: 20px;
+            font-size: 28px;
             cursor: pointer;
             color: #a0aec0;
         }
