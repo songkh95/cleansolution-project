@@ -16,6 +16,15 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="bg-gray-50 font-sans text-gray-800">
+    <!-- 디버깅용 에러 로그 (문제 발생 시 상단에 표시됨) -->
+    <div id="debug-error" class="fixed top-0 left-0 w-full bg-red-600 text-white p-4 z-50 hidden font-mono text-sm"></div>
+    <script>
+        window.onerror = function(msg, url, line) {
+            const el = document.getElementById('debug-error');
+            el.classList.remove('hidden');
+            el.innerHTML += `🚨 오류 발생: ${msg} <br> (파일: ${url.split('/').pop()}:${line})<br>`;
+        };
+    </script>
 
     <div class="flex h-screen overflow-hidden">
         <!-- 사이드바 -->

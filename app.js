@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("🚀 App.js 시작됨");
+
     // 초기 날짜 설정
     const dateEl = document.getElementById('current-date');
     if(dateEl) dateEl.textContent = new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
@@ -43,7 +45,8 @@ async function loadModule(moduleName) {
     try {
         contentDiv.innerHTML = '<div class="flex justify-center items-center h-64"><i class="fa-solid fa-spinner fa-spin text-4xl text-blue-600"></i></div>';
         
-        const response = await fetch(`${moduleName}.html`);
+        // 파일 경로가 루트에 있는지 확인하세요.
+        const response = await fetch(`./${moduleName}.html`);
         if (!response.ok) throw new Error('Module load failed');
         
         const html = await response.text();
@@ -54,7 +57,7 @@ async function loadModule(moduleName) {
         if (oldScript) oldScript.remove();
 
         const script = document.createElement('script');
-        script.src = `${moduleName}.js?t=${new Date().getTime()}`; // 캐시 방지
+        script.src = `./${moduleName}.js?t=${new Date().getTime()}`; // 캐시 방지
         script.id = 'module-script';
         document.body.appendChild(script);
 

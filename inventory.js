@@ -12,6 +12,12 @@
             const tbody = document.getElementById('inventory-list');
             tbody.innerHTML = '<tr><td colspan="5" class="text-center py-8 text-gray-500">데이터 로딩 중...</td></tr>';
 
+            // Supabase 클라이언트 확인
+            if (!window.supabaseClient) {
+                tbody.innerHTML = '<tr><td colspan="5" class="text-center py-8 text-red-500">Supabase 연결 실패: supabase.js가 로드되지 않았습니다.</td></tr>';
+                return;
+            }
+
             let query = window.supabaseClient.from('inventory').select('*').order('created_at', { ascending: false });
             
             if (this.currentFilter !== 'all') {
