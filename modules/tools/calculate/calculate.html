@@ -1,0 +1,148 @@
+<div id="calculator-view">
+    <div class="calc-container" id="calculator-content">
+        <h1>복합기 렌탈 원가 계산서</h1>
+
+        <!-- 1. 임대조건 및 예상 출력량 -->
+        <h2>1. 임대조건 및 예상 출력량 <span class="info-icon" onclick="Calculator.openInfoModal(1)" data-html2canvas-ignore="true">i</span></h2>
+        <div class="overflow-x-auto mb-4">
+            <table>
+                <colgroup>
+                    <col style="width: 20%">
+                    <col style="width: 20%">
+                    <col style="width: 15%">
+                    <col style="width: 20%">
+                    <col style="width: 25%">
+                </colgroup>
+                <tr>
+                    <th>기종명</th>
+                    <th>기계원가</th>
+                    <th>임대기간 (개월)</th>
+                    <th>기계 감가상각 (월)</th>
+                    <th>연 금리 (%)</th>
+                </tr>
+                <tr>
+                    <td><input type="text" id="modelName" value="D3375CFPS"></td>
+                    <td><input type="text" inputmode="numeric" id="machineCost" value="2,850,000" oninput="Calculator.handleInput(this)"></td>
+                    <td><input type="text" inputmode="numeric" id="term" value="36" oninput="Calculator.handleInput(this)"></td>
+                    <td><input type="text" id="monthlyDepreciation" class="readonly" readonly></td>
+                    <td><input type="text" inputmode="decimal" id="interestRate" value="0" oninput="Calculator.handleInput(this)"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="overflow-x-auto mb-4">
+            <table>
+                    <colgroup>
+                    <col style="width: 15%">
+                    <col style="width: 15%">
+                    <col style="width: 20%">
+                    <col style="width: 25%">
+                    <col style="width: 25%">
+                </colgroup>
+                <tr>
+                    <th rowspan="2" class="section-header">임대계약</th>
+                    <th class="sub-header">구분</th>
+                    <th class="sub-header">기본요금 (월)</th>
+                    <th class="sub-header">예상 출력량 (월)</th>
+                    <th class="sub-header">총 출력량 (계약기간)</th>
+                </tr>
+                <tr>
+                    <td>금액 설정</td>
+                    <td><input type="text" inputmode="numeric" id="rentalFee" value="100,000" oninput="Calculator.handleInput(this)"></td>
+                    <td>흑백: <input type="text" inputmode="numeric" id="monthlyBW" value="1,000" style="width: 50px;" oninput="Calculator.handleInput(this)"></td>
+                    <td><input type="text" id="totalBW" class="readonly" readonly></td>
+                </tr>
+                <tr>
+                    <th rowspan="2" class="section-header">기본제공</th>
+                    <td>흑백매수</td>
+                    <td><input type="text" inputmode="numeric" id="basicBW" value="1,000" oninput="Calculator.handleInput(this)"></td>
+                    <td>칼라: <input type="text" inputmode="numeric" id="monthlyColor" value="100" style="width: 50px;" oninput="Calculator.handleInput(this)"></td>
+                    <td><input type="text" id="totalColor" class="readonly" readonly></td>
+                </tr>
+                <tr>
+                    <td>칼라매수</td>
+                    <td><input type="text" inputmode="numeric" id="basicColor" value="100" oninput="Calculator.handleInput(this)"></td>
+                    <td rowspan="2" style="vertical-align: middle; background-color: #fafafa; font-weight:bold;">총 합계 (흑+칼)</td>
+                    <td rowspan="2" style="vertical-align: middle;">
+                        <input type="text" id="totalOutputAll" class="readonly" style="font-weight:bold;" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <th rowspan="3" class="section-header">추가요금<br>(장당)</th>
+                    <td>흑백</td>
+                    <td><input type="text" inputmode="numeric" id="addFeeBW" value="10" oninput="Calculator.handleInput(this)"></td>
+                </tr>
+                <tr class="highlight-row">
+                    <td>칼라 (A4)</td>
+                    <td><input type="text" inputmode="numeric" id="addFeeColorA4" value="100" oninput="Calculator.handleInput(this)"></td>
+                    <td style="font-weight:bold; color:#2980b9;">임대요금 (매월)</td>
+                    <td><input type="text" id="displayMonthlyFee" class="readonly" style="font-weight:bold; color:#2980b9;" readonly></td>
+                </tr>
+                <tr class="highlight-row">
+                    <td>칼라 (A3)</td>
+                    <td><input type="text" inputmode="numeric" id="addFeeColorA3" value="200" oninput="Calculator.handleInput(this)"></td>
+                    <td style="font-weight:bold; color:#2c3e50;">임대요금 (총액)</td>
+                    <td><input type="text" id="displayTotalFee" class="readonly" style="font-weight:bold; color:#2c3e50;" readonly></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 2. 소요비용 -->
+        <h2>2. 소요비용 (소모품) <span class="info-icon" onclick="Calculator.openInfoModal(2)" data-html2canvas-ignore="true">i</span></h2>
+        <div class="text-xs text-gray-500 text-right mb-1">* 개수(x)를 조정하면 단가(세트 가격)가 자동으로 변경됩니다.</div>
+        <div class="overflow-x-auto mb-4">
+            <table>
+                <colgroup>
+                    <col style="width: 12%">
+                    <col style="width: 18%">
+                    <col style="width: 12%">
+                    <col style="width: 15%">
+                    <col style="width: 10%">
+                    <col style="width: 13%">
+                    <col style="width: 20%">
+                </colgroup>
+                <tr>
+                    <th>구분</th>
+                    <th>소모품명</th>
+                    <th>수명 (Life)</th>
+                    <th>단가</th>
+                    <th>개수(x)</th>
+                    <th>교환횟수</th>
+                    <th>소요금액 (총)</th>
+                </tr>
+                <!-- 소모품 행들은 JS에서 초기화 시 값 설정됨 -->
+                <tr><td rowspan="5" style="vertical-align: middle;">소모품</td><td>드럼 (K/C/M/Y)</td><td><input type="text" inputmode="numeric" id="life_drumCommon" value="143,000" oninput="Calculator.handleInput(this)"></td><td><input type="text" inputmode="numeric" id="cost_drumCommon" value="151,000" oninput="Calculator.handleInput(this)"></td><td><input type="number" id="qty_drumCommon" value="4" min="1" oninput="Calculator.handleInput(this)"></td><td><input type="text" id="count_drumCommon" class="readonly" readonly></td><td><input type="text" id="total_drumCommon" class="readonly" readonly></td></tr>
+                <tr><td>토너 B</td><td><input type="text" inputmode="numeric" id="life_tonerB" value="26,000" oninput="Calculator.handleInput(this)"></td><td><input type="text" inputmode="numeric" id="cost_tonerB" value="82,000" oninput="Calculator.handleInput(this)"></td><td><input type="number" id="qty_tonerB" value="1" min="1" oninput="Calculator.handleInput(this)"></td><td><input type="text" id="count_tonerB" class="readonly" readonly></td><td><input type="text" id="total_tonerB" class="readonly" readonly></td></tr>
+                <tr><td>토너 C/M/Y</td><td><input type="text" inputmode="numeric" id="life_tonerColor" value="15,000" oninput="Calculator.handleInput(this)"></td><td><input type="text" inputmode="numeric" id="cost_tonerColor" value="133,000" oninput="Calculator.handleInput(this)"></td><td><input type="number" id="qty_tonerColor" value="3" min="1" oninput="Calculator.handleInput(this)"></td><td><input type="text" id="count_tonerColor" class="readonly" readonly></td><td><input type="text" id="total_tonerColor" class="readonly" readonly></td></tr>
+                <tr><td>폐토너통</td><td><input type="text" inputmode="numeric" id="life_waste" value="46,000" oninput="Calculator.handleInput(this)"></td><td><input type="text" inputmode="numeric" id="cost_waste" value="38,000" oninput="Calculator.handleInput(this)"></td><td><input type="number" id="qty_waste" value="1" min="1" oninput="Calculator.handleInput(this)"></td><td><input type="text" id="count_waste" class="readonly" readonly></td><td><input type="text" id="total_waste" class="readonly" readonly></td></tr>
+                <tr><td>Fuser</td><td><input type="text" inputmode="numeric" id="life_fuser" value="100,000" oninput="Calculator.handleInput(this)"></td><td><input type="text" inputmode="numeric" id="cost_fuser" value="250,000" oninput="Calculator.handleInput(this)"></td><td><input type="number" id="qty_fuser" value="1" min="1" oninput="Calculator.handleInput(this)"></td><td><input type="text" id="count_fuser" class="readonly" readonly></td><td><input type="text" id="total_fuser" class="readonly" readonly></td></tr>
+                <tr class="result-row"><td colspan="6">소모품 총 소요금액 합계</td><td><input type="text" id="grandTotalConsumables" class="readonly" style="text-align: center; font-size: 1.1em;" readonly></td></tr>
+            </table>
+        </div>
+
+        <!-- 3. 임대시 이익 -->
+        <h2>3. 임대시 이익 (월) <span class="info-icon" onclick="Calculator.openInfoModal(3)" data-html2canvas-ignore="true">i</span></h2>
+        <div class="overflow-x-auto mb-4">
+            <table>
+                <tr><th>구분</th><th>기계 감가 (월)</th><th>금리비용 (월)</th><th>소모품 비용 (월)</th><th>원가 합계 (월)</th><th>임대 요금 (월)</th><th>이익 (월)</th><th>마진율 (%)</th><th>총 이익 (전체)</th></tr>
+                <tr><td>금액</td><td><input type="text" id="profit_machine" class="readonly" readonly></td><td><input type="text" id="profit_interest" class="readonly" readonly></td><td><input type="text" id="profit_consumable" class="readonly" readonly></td><td><input type="text" id="profit_cost_total" class="readonly" style="color: #d35400;" readonly></td><td><input type="text" id="profit_rental_fee" class="readonly" readonly></td><td><input type="text" id="profit_monthly" class="readonly" style="font-weight:bold;" readonly></td><td><input type="text" id="profit_margin_rate" class="readonly" style="font-weight:bold; text-align:center;" readonly></td><td><input type="text" id="profit_total" class="readonly" style="font-weight:bold;" readonly></td></tr>
+            </table>
+        </div>
+
+        <!-- PDF 저장 버튼 -->
+        <div class="text-center mt-8 mb-4" data-html2canvas-ignore="true">
+            <button onclick="Calculator.saveAsPDF()" class="bg-red-500 text-white px-6 py-3 rounded-lg font-bold shadow-md hover:bg-red-600 transition-colors flex items-center justify-center gap-2 mx-auto">
+                <i class="fa-solid fa-file-pdf"></i> 견적서 PDF로 저장
+            </button>
+        </div>
+    </div>
+
+    <!-- 설명 모달 -->
+    <div id="infoModal" class="fixed inset-0 z-50 hidden flex items-center justify-center">
+        <div class="modal-content relative">
+            <span class="close-btn" onclick="Calculator.closeInfoModal()">&times;</span>
+            <div id="modalHeader" class="text-lg font-bold text-slate-800 mb-2 pb-2 border-b border-blue-500"></div>
+            <div id="modalBody" class="text-sm text-gray-700 leading-relaxed"></div>
+        </div>
+    </div>
+</div>
