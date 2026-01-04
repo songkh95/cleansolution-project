@@ -1,59 +1,32 @@
 <div class="space-y-6">
-    <!-- 견적서 A4 용지 UI -->
-    <div class="flex justify-center bg-gray-200 p-8 overflow-auto" id="view-quote">
-        <div class="print-area bg-white w-[210mm] min-h-[297mm] p-[20mm] shadow-2xl text-sm relative">
-            <!-- 인쇄 버튼 -->
-            <button onclick="window.print()" class="absolute top-4 right-4 bg-slate-800 text-white px-4 py-2 rounded shadow no-print hover:bg-slate-700">
-                <i class="fa-solid fa-print mr-2"></i> 인쇄하기
-            </button>
-
-            <!-- 견적서 헤더 -->
-            <h1 class="text-3xl font-bold text-center underline mb-12 tracking-widest">견 적 서</h1>
-            
-            <div class="flex justify-between mb-8">
-                <div class="w-1/2">
-                    <div class="border-b border-black mb-2 pb-1">수신: <input type="text" class="outline-none w-64 font-bold" placeholder="고객사명 입력"> 귀하</div>
-                    <p>아래와 같이 견적합니다.</p>
+    <!-- Tools Menu (Landing) -->
+    <div id="tools-menu" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div onclick="Tools.loadTool('estimate')" class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 cursor-pointer hover:shadow-md transition-all group">
+            <div class="flex flex-col items-center text-center gap-4">
+                <div class="w-16 h-16 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-2xl group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                    <i class="fa-solid fa-file-invoice"></i>
                 </div>
-                <div class="w-1/2 border border-black p-2">
-                    <table class="w-full text-center">
-                        <tr>
-                            <td rowspan="4" class="w-8 bg-gray-100 border-r border-black font-bold">공<br>급<br>자</td>
-                            <td class="border-b border-r border-black bg-gray-50">등록번호</td>
-                            <td colspan="3" class="border-b border-black">123-45-67890</td>
-                        </tr>
-                        <tr>
-                            <td class="border-b border-r border-black bg-gray-50">상호</td>
-                            <td class="border-b border-r border-black">크린솔루션</td>
-                        </tr>
-                    </table>
-                </div>
+                <h3 class="text-xl font-bold text-gray-800">견적서 작성</h3>
+                <p class="text-gray-500 text-sm">복합기 렌탈 견적서를 작성하고<br>PDF로 저장합니다.</p>
             </div>
-
-            <!-- 견적 합계 -->
-            <div class="border-t-2 border-b-2 border-black py-2 mb-4 font-bold text-lg flex justify-between">
-                <span>합계금액 (공급가액+세액) :</span>
-                <span>일금 <span id="total-korean">영</span>원정 (₩ <span id="total-number">0</span>)</span>
-            </div>
-
-            <!-- 품목 테이블 -->
-            <table class="w-full border-collapse border border-black text-center mb-8">
-                <thead class="bg-gray-100">
-                    <tr>
-                        <th class="border border-black py-1">품명</th>
-                        <th class="border border-black py-1">수량</th>
-                        <th class="border border-black py-1">단가</th>
-                        <th class="border border-black py-1">공급가액</th>
-                        <th class="border border-black py-1">세액</th>
-                        <th class="border border-black py-1 no-print">삭제</th>
-                    </tr>
-                </thead>
-                <tbody id="quote-items"></tbody>
-            </table>
-            
-            <button onclick="Tools.addQuoteItem()" class="w-full py-2 border-2 border-dashed border-gray-300 text-gray-400 hover:border-blue-500 hover:text-blue-500 rounded no-print">
-                + 품목 추가
-            </button>
         </div>
+
+        <div onclick="Tools.loadTool('calculate')" class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 cursor-pointer hover:shadow-md transition-all group">
+            <div class="flex flex-col items-center text-center gap-4">
+                <div class="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                    <i class="fa-solid fa-calculator"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800">원가 계산기</h3>
+                <p class="text-gray-500 text-sm">렌탈 원가 및 마진율을 계산하고<br>손익분기점을 분석합니다.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tool Content Area -->
+    <div id="tool-workspace" class="hidden">
+        <button onclick="Tools.showMenu()" class="mb-4 text-gray-500 hover:text-gray-800 flex items-center gap-2">
+            <i class="fa-solid fa-arrow-left"></i> 도구 목록으로 돌아가기
+        </button>
+        <div id="tool-container"></div>
     </div>
 </div>

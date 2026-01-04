@@ -37,8 +37,7 @@ async function loadModule(moduleName) {
         'inventory': '재고 관리',
         'client': '거래처 관리',
         'finance': '재무 관리',
-        'tools': '업무 도구',
-        'calculate': '원가 계산기'
+        'tools': '업무 도구'
     };
     pageTitle.textContent = titles[moduleName] || 'CleanSolution';
 
@@ -46,11 +45,7 @@ async function loadModule(moduleName) {
     try {
         contentDiv.innerHTML = '<div class="flex justify-center items-center h-64"><i class="fa-solid fa-spinner fa-spin text-4xl text-blue-600"></i></div>';
         
-        // 모듈 경로 설정 (calculate는 tools 폴더 안에 있음)
         let modulePath = `modules/${moduleName}/${moduleName}.html`;
-        if (moduleName === 'calculate') {
-            modulePath = `modules/tools/calculate/calculate.html`;
-        }
 
         const response = await fetch(modulePath);
         if (!response.ok) throw new Error('Module load failed');
@@ -64,9 +59,6 @@ async function loadModule(moduleName) {
 
         const script = document.createElement('script');
         let scriptPath = `modules/${moduleName}/${moduleName}.js`;
-        if (moduleName === 'calculate') {
-            scriptPath = `modules/tools/calculate/calculate.js`;
-        }
         script.src = `${scriptPath}?t=${new Date().getTime()}`; // 캐시 방지
         script.id = 'module-script';
         document.body.appendChild(script);
