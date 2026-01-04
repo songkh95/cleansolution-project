@@ -1,0 +1,55 @@
+<div class="space-y-6">
+    <!-- 환영 배너 -->
+    <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-2xl p-8 text-white shadow-lg relative overflow-hidden">
+        <div class="relative z-10">
+            <h3 class="text-3xl font-bold mb-2">환영합니다, 관리자님! 👋</h3>
+            <p class="text-blue-100">오늘의 주요 업무 현황을 확인하세요.</p>
+        </div>
+        <i class="fa-solid fa-building text-9xl absolute -right-6 -bottom-10 text-white opacity-10"></i>
+    </div>
+
+    <!-- KPI 카드 -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+            <div class="flex justify-between items-start mb-4">
+                <div class="w-12 h-12 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center text-xl">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <span class="text-xs font-bold text-orange-600 bg-orange-50 px-2 py-1 rounded">Action</span>
+            </div>
+            <h4 class="text-gray-500 text-sm font-medium">재고 부족 알림</h4>
+            <p class="text-3xl font-bold text-gray-800 mt-1" id="kpi-stock">0 <span class="text-sm font-normal text-gray-400">건</span></p>
+        </div>
+        
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+            <div class="flex justify-between items-start mb-4">
+                <div class="w-12 h-12 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl">
+                    <i class="fa-solid fa-won-sign"></i>
+                </div>
+                <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded">+12%</span>
+            </div>
+            <h4 class="text-gray-500 text-sm font-medium">이번 달 매출</h4>
+            <p class="text-3xl font-bold text-gray-800 mt-1">45.2 <span class="text-sm font-normal text-gray-400">백만</span></p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+            <div class="flex justify-between items-start mb-4">
+                <div class="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-xl">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+            </div>
+            <h4 class="text-gray-500 text-sm font-medium">총 거래처</h4>
+            <p class="text-3xl font-bold text-gray-800 mt-1">128 <span class="text-sm font-normal text-gray-400">개사</span></p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+            <div class="flex justify-between items-start mb-4">
+                <div class="w-12 h-12 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center text-xl">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                </div>
+            </div>
+            <h4 class="text-gray-500 text-sm font-medium">AS 접수</h4>
+            <p class="text-3xl font-bold text-gray-800 mt-1">5 <span class="text-sm font-normal text-gray-400">건</span></p>
+        </div>
+    </div>
+</div>
