@@ -18,6 +18,8 @@ window.closeModal = function() {
 // TODO: Supabase 프로젝트 설정값으로 변경해주세요.
 // Supabase 웹사이트 -> Settings -> API 메뉴에서 복사해오세요.
 const SUPABASE_URL = 'https://sjrvigfoztllubjpwnoz.supabase.co';
+// 주의: Supabase의 새로운 키 형식은 보통 'sb_publishable_' (언더바 1개)로 시작합니다.
+// 현재 입력된 값은 언더바가 2개('__')이므로, 만약 작동하지 않는다면 확인이 필요합니다.
 const SUPABASE_KEY = 'sb_publishable__45yxFL18jgN7gUy2YQzIA_Wl2i9-gz';
 // Supabase 클라이언트 생성 (라이브러리 로드 확인)
 let db;
@@ -101,6 +103,8 @@ async function loadInventory() {
         // 친절한 에러 메시지 처리
         if(error.message.includes('relation "inventory" does not exist')) {
             errorMsg = "Supabase에 'inventory' 테이블을 아직 안 만드신 것 같아요!";
+        } else if (error.code === 'PGRST301' || error.message.includes('API key')) {
+            errorMsg = "Supabase API 키 인증 실패: 키 값을 확인해주세요.";
         }
 
         tbody.innerHTML = `
